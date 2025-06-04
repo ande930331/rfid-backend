@@ -12,14 +12,16 @@ const port = process.env.PORT || 3000;
 
 const axios = require('axios');
 
-const LINE_TOKEN = '1.7jEG5dwMI2tDTNQ3IrVwMXInzkowORQOhXnbma6Ko0txc9goJ1oENvRE7G+7r8r/S5QsGOj83roMqCN4Fu9sXzQx3jIIlDxmDOZIwjAvNKsiy+xaEjz5GRRpyhAeEsEwPe89SeRiWWoa6UVyya4uhQdB04t89/1O/w1cDnyilFU=';
-// ✅ MySQL 設定
+require('dotenv').config();
+
+const LINE_TOKEN = process.env.LINE_TOKEN;
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'ande20040331',
-  database: 'ESP32'
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 });
+
 
 db.connect(err => {
   if (err) throw err;
